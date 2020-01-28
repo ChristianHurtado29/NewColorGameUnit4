@@ -13,7 +13,6 @@
 		1347A01B23E0E29B00976B22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1347A01A23E0E29B00976B22 /* Assets.xcassets */; };
 		1347A01E23E0E29B00976B22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1347A01C23E0E29B00976B22 /* LaunchScreen.storyboard */; };
 		1347A02623E0E3D600976B22 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1347A02523E0E3D600976B22 /* MainView.swift */; };
-		1347A02823E0EEBD00976B22 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1347A02723E0EEBD00976B22 /* StackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +24,6 @@
 		1347A01D23E0E29B00976B22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1347A01F23E0E29B00976B22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1347A02523E0E3D600976B22 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		1347A02723E0EEBD00976B22 /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +60,6 @@
 				1347A01323E0E29900976B22 /* SceneDelegate.swift */,
 				1347A01523E0E29900976B22 /* MainViewController.swift */,
 				1347A02523E0E3D600976B22 /* MainView.swift */,
-				1347A02723E0EEBD00976B22 /* StackView.swift */,
 				1347A01A23E0E29B00976B22 /* Assets.xcassets */,
 				1347A01C23E0E29B00976B22 /* LaunchScreen.storyboard */,
 				1347A01F23E0E29B00976B22 /* Info.plist */,
@@ -144,7 +141,6 @@
 				1347A02623E0E3D600976B22 /* MainView.swift in Sources */,
 				1347A01223E0E29900976B22 /* AppDelegate.swift in Sources */,
 				1347A01423E0E29900976B22 /* SceneDelegate.swift in Sources */,
-				1347A02823E0EEBD00976B22 /* StackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

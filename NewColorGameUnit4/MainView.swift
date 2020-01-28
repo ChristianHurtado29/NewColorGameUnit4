@@ -10,11 +10,24 @@ import UIKit
 
 class MainView: UIView {
     
+    let welcomeMsg = "Which color is dominant?"
+    
+    public lazy var messageLabel: UILabel = {
+    let label = UILabel()
+     label.backgroundColor = .systemGray3
+     label.textAlignment = .center
+     label.text = welcomeMsg
+     label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+     return label
+    }()
+    
     public lazy var imgView : UIImageView = {
         let img = UIImageView()
         img.backgroundColor = newColor()
         return img
     }()
+    
+    
     
     var redColor = CGFloat.random(in: 0...1)
     var greenColor = CGFloat.random(in: 0...1)
@@ -43,6 +56,7 @@ class MainView: UIView {
     
     private func commonInit(){
         setupImageViewConstraints()
+        setupMessageLabelConstraints()
     }
     
     
@@ -59,6 +73,17 @@ class MainView: UIView {
             ])
     }
     
+    private func setupMessageLabelConstraints() {
+        // add the messageLabel to the MainView
+        addSubview(messageLabel) // return the messageLabel we created above
+        messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            // set top anchor 20 points from the safe area top
+            messageLabel.topAnchor.constraint(equalTo: imgView.bottomAnchor, constant: 20),
+            messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+            ])
+    }
     
     
 }

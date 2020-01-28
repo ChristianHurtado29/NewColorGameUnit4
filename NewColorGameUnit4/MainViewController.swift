@@ -12,14 +12,13 @@ class MainViewController: UIViewController {
     
     private let mainView = MainView()
     
-    
     override func loadView() {
         view = mainView
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //loadView()
+
         view.backgroundColor = .white
     }
     
