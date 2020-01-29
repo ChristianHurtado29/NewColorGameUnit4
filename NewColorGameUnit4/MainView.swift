@@ -13,12 +13,12 @@ class MainView: UIView {
     let welcomeMsg = "Which color is dominant?"
     
     public lazy var messageLabel: UILabel = {
-    let label = UILabel()
-     label.backgroundColor = .systemGray3
-     label.textAlignment = .center
-     label.text = welcomeMsg
-     label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-     return label
+        let label = UILabel()
+        label.backgroundColor = .systemGray3
+        label.textAlignment = .center
+        label.text = welcomeMsg
+        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        return label
     }()
     
     public lazy var imgView : UIImageView = {
@@ -26,8 +26,6 @@ class MainView: UIView {
         img.backgroundColor = newColor()
         return img
     }()
-    
-    
     
     var redColor = CGFloat.random(in: 0...1)
     var greenColor = CGFloat.random(in: 0...1)
@@ -41,13 +39,39 @@ class MainView: UIView {
         return newColor
     }
     
+    let colors = [
+        "Red":UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0),
+        "Green":UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0),
+        "Blue":UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0),
+    ]
     
+    func colorButton(withColor color:UIColor, title:String) -> [UIButton] {
+        
+        let redButton = UIButton()
+        redButton.backgroundColor = .red,
+        redButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside),
+        let greenButton = UIButton()
+        greenButton.backgroundColor = .green
+        greenButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside),
+        let blueButton = UIButton()
+        blueButton.backgroundColor = .blue
+        blueButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+        
+        let array = [redButton, greenButton, blueButton]
+        
+        return array
+    }
+    
+    @objc
+    private func buttonPressed(_ sender: UIButton) {
+        let myRed = CGFloat.random(in: 0...1)
+    }
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
     }
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         commonInit()
@@ -57,6 +81,7 @@ class MainView: UIView {
     private func commonInit(){
         setupImageViewConstraints()
         setupMessageLabelConstraints()
+        displayKeyboard()
     }
     
     
@@ -70,7 +95,7 @@ class MainView: UIView {
             imgView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             imgView.heightAnchor.constraint(equalToConstant: 400),
             imgView.widthAnchor.constraint(equalToConstant: 374)
-            ])
+        ])
     }
     
     private func setupMessageLabelConstraints() {
@@ -82,7 +107,24 @@ class MainView: UIView {
             messageLabel.topAnchor.constraint(equalTo: imgView.bottomAnchor, constant: 20),
             messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
-            ])
+        ])
+    }
+    
+    private func displayKeyboard(){
+        var buttonArray = [UIButton]()
+        for (myKey,myValue) in colors{
+            buttonArray += [colorButton(withColor: myValue, title: myKey)]
+        }
+        let stackView = UIStackView(arrangedSubviews: buttonArray)
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.alignment = .center
+        stackView.spacing = 25
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func setupKeyboard() {
+        addSubview
     }
     
     
