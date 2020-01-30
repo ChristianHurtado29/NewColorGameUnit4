@@ -11,9 +11,8 @@ import UIKit
 class MainView: UIView {
     
     var welcomeMsg = "Which color is dominant?"
-    var playerScore = ""
-    var highScore = ""
-    
+    var playerScore = "Player score: 0"
+    var highScore = "High score: 0"
     var score = 0
     var highScoreInt = 0
     
@@ -25,6 +24,25 @@ class MainView: UIView {
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
+    
+    public lazy var playerScoreLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .systemGray3
+        label.textAlignment = .center
+        label.text = playerScore
+        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        return label
+    }()
+    
+    public lazy var highScoreLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .systemGray3
+        label.textAlignment = .center
+        label.text = highScore
+        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        return label
+    }()
+    
     
     public lazy var imgView : UIImageView = {
         let img = UIImageView()
@@ -95,10 +113,11 @@ class MainView: UIView {
                 welcomeMsg = "⭐️Correct! 🙌🚀⭐️"
                 imgView.backgroundColor = newColor()
                 score += 1
-                playerScore = "Player Score: \(score)"
+                print(score)
+                playerScoreLabel.text = "Player Score: \(score)"
                 if score > highScoreInt{
                     highScoreInt = score
-                    highScore = "High Score: \(highScoreInt)"
+                    highScoreLabel.text = "High Score: \(highScoreInt)"
                 }
             }
             else{
@@ -111,10 +130,11 @@ class MainView: UIView {
                 welcomeMsg = "⭐️Correct! 🙌🚀⭐️"
                     imgView.backgroundColor = newColor()
                     score += 1
-                    playerScore = "Player Score: \(score)"
+                print(score)
+                    playerScoreLabel.text = "Player Score: \(score)"
                     if score > highScoreInt{
                         highScoreInt = score
-                        highScore = "High Score: \(highScoreInt)"
+                        highScoreLabel.text = "High Score: \(highScoreInt)"
                     }
                 }
                 else{
@@ -127,10 +147,11 @@ class MainView: UIView {
                 welcomeMsg = "⭐️Correct! 🙌🚀⭐️"
                     imgView.backgroundColor = newColor()
                     score += 1
-                    playerScore = "Player Score: \(score)"
+                    print(score)
+                    playerScoreLabel.text = "Player Score: \(score)"
                     if score > highScoreInt{
                         highScoreInt = score
-                        highScore = "High Score: \(highScoreInt)"
+                        highScoreLabel.text = "High Score: \(highScoreInt)"
                     }
                 }
                 else{
@@ -157,11 +178,12 @@ class MainView: UIView {
         setupImageViewConstraints()
         setupMessageLabelConstraints()
         displayButtons()
+        setupPlayerScoreConstraints()
+        setupHighScoreLabelConstraints()
     }
     
     private func setupImageViewConstraints() {
         addSubview(imgView)
-        addSubview(messageLabel)
         imgView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             imgView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -173,6 +195,7 @@ class MainView: UIView {
     }
     
     private func setupMessageLabelConstraints() {
+        addSubview(messageLabel)
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             messageLabel.topAnchor.constraint(equalTo: imgView.bottomAnchor, constant: 20),
@@ -182,17 +205,38 @@ class MainView: UIView {
     }
     
     private func displayButtons(){
-       let stackView = UIStackView()
+        addSubview(stackView)
         stackView.spacing = 130
         stackView.addArrangedSubview(redButton)
         stackView.addArrangedSubview(greenButton)
         stackView.addArrangedSubview(blueButton)
-        addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 40),
-            stackView.heightAnchor.constraint(equalToConstant: 50),
+            stackView.heightAnchor.constraint(equalToConstant: 40),
             stackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 30),
             stackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -30)])
     }
+    
+    private func setupPlayerScoreConstraints() {
+        addSubview(playerScoreLabel)
+        playerScoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            playerScoreLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 50),
+            playerScoreLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            playerScoreLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+        ])
+    }
+    
+    private func setupHighScoreLabelConstraints() {
+        addSubview(highScoreLabel)
+        highScoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            highScoreLabel.topAnchor.constraint(equalTo: playerScoreLabel.bottomAnchor, constant: 30),
+            highScoreLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
+            highScoreLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40)
+        ])
+    }
+    
+    
 }
