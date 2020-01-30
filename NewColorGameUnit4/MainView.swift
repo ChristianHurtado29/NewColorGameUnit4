@@ -105,7 +105,6 @@ class MainView: UIView {
     @objc
     private func buttonPressed(_ sender: UIButton) {
       let array = [redColor, greenColor, blueColor]
-        print("button pressed")
         let highColor = array.max() ?? 0
         switch highColor {
         case redColor:
@@ -113,7 +112,6 @@ class MainView: UIView {
                 welcomeMsg = "⭐️Correct! 🙌🚀⭐️"
                 imgView.backgroundColor = newColor()
                 score += 1
-                print(score)
                 playerScoreLabel.text = "Player Score: \(score)"
                 if score > highScoreInt{
                     highScoreInt = score
@@ -124,13 +122,13 @@ class MainView: UIView {
                 welcomeMsg = "😵Wrong!⚰️"
                 score = 0
                 playerScore = "Player Score: 0"
+                playerScoreLabel.text = "Player Score: \(score)"
             }
         case greenColor:
             if sender.tag == 1{
                 welcomeMsg = "⭐️Correct! 🙌🚀⭐️"
                     imgView.backgroundColor = newColor()
                     score += 1
-                print(score)
                     playerScoreLabel.text = "Player Score: \(score)"
                     if score > highScoreInt{
                         highScoreInt = score
@@ -141,13 +139,13 @@ class MainView: UIView {
                     welcomeMsg = "😵Wrong!⚰️"
                     score = 0
                     playerScore = "Player Score: 0"
+                    playerScoreLabel.text = "Player Score: \(score)"
             }
         case blueColor:
             if sender.tag == 2{
                 welcomeMsg = "⭐️Correct! 🙌🚀⭐️"
                     imgView.backgroundColor = newColor()
                     score += 1
-                    print(score)
                     playerScoreLabel.text = "Player Score: \(score)"
                     if score > highScoreInt{
                         highScoreInt = score
@@ -158,6 +156,7 @@ class MainView: UIView {
                     welcomeMsg = "😵Wrong!⚰️"
                     score = 0
                     playerScore = "Player Score: 0"
+                    playerScoreLabel.text = "Player Score: \(score)"
             }
         default:
             break
