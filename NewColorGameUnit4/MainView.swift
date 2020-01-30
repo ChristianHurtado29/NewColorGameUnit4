@@ -10,7 +10,12 @@ import UIKit
 
 class MainView: UIView {
     
-    let welcomeMsg = "Which color is dominant?"
+    var welcomeMsg = "Which color is dominant?"
+    var playerScore = ""
+    var highScore = ""
+    
+    var score = 0
+    var highScoreInt = 0
     
     public lazy var messageLabel: UILabel = {
         let label = UILabel()
@@ -29,6 +34,7 @@ class MainView: UIView {
     
     public lazy var redButton : UIButton = {
         let redButton = UIButton()
+        redButton.tag = 0
         redButton.backgroundColor = .red
         redButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         return redButton
@@ -36,6 +42,7 @@ class MainView: UIView {
     
     public lazy var greenButton : UIButton = {
         let greenButton = UIButton()
+        greenButton.tag = 1
         greenButton.backgroundColor = .green
         greenButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         return greenButton
@@ -43,6 +50,7 @@ class MainView: UIView {
     
     public lazy var blueButton : UIButton = {
         let blueButton = UIButton()
+        blueButton.tag = 2
         blueButton.backgroundColor = .blue
         blueButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         return blueButton
@@ -78,9 +86,61 @@ class MainView: UIView {
     
     @objc
     private func buttonPressed(_ sender: UIButton) {
-      
-        
-        
+      let array = [redColor, greenColor, blueColor]
+        print("button pressed")
+        let highColor = array.max() ?? 0
+        switch highColor {
+        case redColor:
+            if sender.tag == 0{
+                welcomeMsg = "⭐️Correct! 🙌🚀⭐️"
+                imgView.backgroundColor = newColor()
+                score += 1
+                playerScore = "Player Score: \(score)"
+                if score > highScoreInt{
+                    highScoreInt = score
+                    highScore = "High Score: \(highScoreInt)"
+                }
+            }
+            else{
+                welcomeMsg = "😵Wrong!⚰️"
+                score = 0
+                playerScore = "Player Score: 0"
+            }
+        case greenColor:
+            if sender.tag == 1{
+                welcomeMsg = "⭐️Correct! 🙌🚀⭐️"
+                    imgView.backgroundColor = newColor()
+                    score += 1
+                    playerScore = "Player Score: \(score)"
+                    if score > highScoreInt{
+                        highScoreInt = score
+                        highScore = "High Score: \(highScoreInt)"
+                    }
+                }
+                else{
+                    welcomeMsg = "😵Wrong!⚰️"
+                    score = 0
+                    playerScore = "Player Score: 0"
+            }
+        case blueColor:
+            if sender.tag == 2{
+                welcomeMsg = "⭐️Correct! 🙌🚀⭐️"
+                    imgView.backgroundColor = newColor()
+                    score += 1
+                    playerScore = "Player Score: \(score)"
+                    if score > highScoreInt{
+                        highScoreInt = score
+                        highScore = "High Score: \(highScoreInt)"
+                    }
+                }
+                else{
+                    welcomeMsg = "😵Wrong!⚰️"
+                    score = 0
+                    playerScore = "Player Score: 0"
+            }
+        default:
+            break
+        }
     }
     
     override init(frame: CGRect) {
