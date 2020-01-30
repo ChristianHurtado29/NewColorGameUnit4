@@ -27,6 +27,32 @@ class MainView: UIView {
         return img
     }()
     
+    public lazy var redButton : UIButton = {
+        let redButton = UIButton()
+        redButton.backgroundColor = .red
+        redButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+        return redButton
+    }()
+    
+    public lazy var greenButton : UIButton = {
+        let greenButton = UIButton()
+        greenButton.backgroundColor = .green
+        greenButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+        return greenButton
+    }()
+    
+    public lazy var blueButton : UIButton = {
+        let blueButton = UIButton()
+        blueButton.backgroundColor = .blue
+        blueButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+        return blueButton
+    }()
+    
+    public lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        return stackView
+    }()
+    
     var redColor = CGFloat.random(in: 0...1)
     var greenColor = CGFloat.random(in: 0...1)
     var blueColor = CGFloat.random(in: 0...1)
@@ -46,25 +72,15 @@ class MainView: UIView {
     ]
     
     func colorButton(withColor color:UIColor, title:String) -> [UIButton] {
-        
-        let redButton = UIButton()
-        redButton.backgroundColor = .red,
-        redButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside),
-        let greenButton = UIButton()
-        greenButton.backgroundColor = .green
-        greenButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside),
-        let blueButton = UIButton()
-        blueButton.backgroundColor = .blue
-        blueButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
-        
         let array = [redButton, greenButton, blueButton]
-        
         return array
     }
     
     @objc
     private func buttonPressed(_ sender: UIButton) {
-        let myRed = CGFloat.random(in: 0...1)
+      
+        
+        
     }
     
     override init(frame: CGRect) {
@@ -77,19 +93,17 @@ class MainView: UIView {
         commonInit()
     }
     
-    
     private func commonInit(){
         setupImageViewConstraints()
         setupMessageLabelConstraints()
-        displayKeyboard()
+        displayButtons()
     }
-    
     
     private func setupImageViewConstraints() {
         addSubview(imgView)
+        addSubview(messageLabel)
         imgView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            // set top anchor 20 points from the safe area top
             imgView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
             imgView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             imgView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
@@ -99,33 +113,26 @@ class MainView: UIView {
     }
     
     private func setupMessageLabelConstraints() {
-        // add the messageLabel to the MainView
-        addSubview(messageLabel) // return the messageLabel we created above
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            // set top anchor 20 points from the safe area top
             messageLabel.topAnchor.constraint(equalTo: imgView.bottomAnchor, constant: 20),
             messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
         ])
     }
     
-    private func displayKeyboard(){
-        var buttonArray = [UIButton]()
-        for (myKey,myValue) in colors{
-            buttonArray += [colorButton(withColor: myValue, title: myKey)]
-        }
-        let stackView = UIStackView(arrangedSubviews: buttonArray)
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.alignment = .center
-        stackView.spacing = 25
+    private func displayButtons(){
+       let stackView = UIStackView()
+        stackView.spacing = 130
+        stackView.addArrangedSubview(redButton)
+        stackView.addArrangedSubview(greenButton)
+        stackView.addArrangedSubview(blueButton)
+        addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 40),
+            stackView.heightAnchor.constraint(equalToConstant: 50),
+            stackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 30),
+            stackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -30)])
     }
-    
-    private func setupKeyboard() {
-        addSubview
-    }
-    
-    
 }
