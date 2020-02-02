@@ -109,7 +109,7 @@ class MainView: UIView {
         switch highColor {
         case redColor:
             if sender.tag == 0{
-                welcomeMsg = "⭐️Correct! 🙌🚀⭐️"
+                messageLabel.text = "⭐️Correct! 🙌🚀⭐️"
                 imgView.backgroundColor = newColor()
                 score += 1
                 playerScoreLabel.text = "Player Score: \(score)"
@@ -126,7 +126,7 @@ class MainView: UIView {
             }
         case greenColor:
             if sender.tag == 1{
-                welcomeMsg = "⭐️Correct! 🙌🚀⭐️"
+                messageLabel.text = "⭐️Correct! 🙌🚀⭐️"
                     imgView.backgroundColor = newColor()
                     score += 1
                     playerScoreLabel.text = "Player Score: \(score)"
@@ -143,7 +143,7 @@ class MainView: UIView {
             }
         case blueColor:
             if sender.tag == 2{
-                welcomeMsg = "⭐️Correct! 🙌🚀⭐️"
+                messageLabel.text = "⭐️Correct! 🙌🚀⭐️"
                     imgView.backgroundColor = newColor()
                     score += 1
                     playerScoreLabel.text = "Player Score: \(score)"
@@ -153,7 +153,7 @@ class MainView: UIView {
                     }
                 }
                 else{
-                    welcomeMsg = "😵Wrong!⚰️"
+                messageLabel.text = "😵Wrong!⚰️"
                     score = 0
                     playerScore = "Player Score: 0"
                     playerScoreLabel.text = "Player Score: \(score)"
@@ -236,6 +236,4 @@ class MainView: UIView {
             highScoreLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40)
         ])
     }
-    
-    
 }
